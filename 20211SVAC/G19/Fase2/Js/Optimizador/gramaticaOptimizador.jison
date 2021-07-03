@@ -148,9 +148,9 @@ INSTRUCCION
     |goto id ptcoma                                                             {$$= new goto(@1.first_line, @1.first_column, tipoInstr.GOTO, $2)}
     |return ptcoma                                                              {$$= new Return(@1.first_line, @1.first_column, "return;\n", tipoInstr.RETURN)}
     |return EXPR ptcoma                                                         {$$= new Return(@1.first_line, @1.first_column, "return "+ $2+";\n", tipoInstr.RETURN)}
-    |id parIzq parDer ptcomaa                                                   {$$ = new call(@1.first_line, @1.first_column, tipoInstr.CALL, [], $1)}
+    |id parIzq parDer ptcoma                                                   {$$ = new call(@1.first_line, @1.first_column, tipoInstr.CALL, [], $1)}
     |id parIzq IDS parDer ptcoma                                                {$$ = new call(@1.first_line, @1.first_column, tipoInstr.CALL, $3, $1)}
-    |printf parIzq EXPR parDer ptcoma                                           {$$ = new print(@1.first_line, @1.first_column, tipoInstr.PRINT, $3)}
+    |printf parIzq cadena comma parIzq TIPO_DATO parDer EXPR parDer ptcoma      {$$ = new print(@1.first_line, @1.first_column, tipoInstr.PRINT, "printf(" + $3 + ", (" + $6 + ")" + $8 + ");\n")}
     |if parIzq EXPR COMPARADOR EXPR parDer goto id ptcoma                       {$$= new _if(@1.first_line, @1.first_column, $3, $4,$5,$8, tipoInstr.IF)}
     |TIPO_FUNCTION IDS equal EXPR ptcoma                                        {$$ = new declaracionAsig(@1.first_line, @1.first_column,$4,$2,TipoBloque.DECLARACION_ASIG, $1)}
     |TIPO_FUNCTION IDS ptcoma                                                   {$$ = new declaracionS(@1.first_line, @1.first_column, TipoBloque.DECLARACION_S, $1, $2)}

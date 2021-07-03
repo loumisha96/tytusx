@@ -1,10 +1,10 @@
 var print = /**@class */(function(){
-    function print(linea, columna, tipo, expr){
+    function print(linea, columna, tipo, codigo){
         this.linea = linea
         this.columna = columna
         this.tipo = tipo
-        this.expr = expr
-        this.codigo =""
+        
+        this.codigo =codigo
     }
     print.prototype.getTipo = function(){
         return this.tipo
@@ -15,7 +15,7 @@ var print = /**@class */(function(){
     }
     print.prototype.set3D = function(){
         if(this.tipo!= tipoInstr.NULL)
-            this.codigo="printF("+this.expr+");\n"
+            this.codigo=this.codigo
         else    
             this.codigo=""
         return this.codigo

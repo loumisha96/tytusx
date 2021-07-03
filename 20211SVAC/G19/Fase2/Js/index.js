@@ -612,14 +612,14 @@ function CambiarCodificacion(cadena){
 }
 
 function setTraduction(){
-SetReporteOptimizar('hola')
+
     globalC3D = "";
     globalC3D += `
     #include <stdio.h>
     #include <math.h>
     
     double heap[30101999];
-    double stack[30101999];
+    double stack[30101999];s
     double sp;
     double hp;
     
@@ -651,7 +651,7 @@ SetReporteOptimizar('hola')
     globalC3D +=`
     
         \n \n
-        void main() {
+        int main() {
           
 
 
@@ -679,5 +679,9 @@ function Optimizar(){
     console.log(op.reporte)
     op.optimizar()
     SalidaTraduccion.setValue(op.print())
+    if(op.reporte="")
+        SetReporteOptimizar("Codigo Ya está optimizado")
+    else
+        SetReporteOptimizar(op.reporte) 
     
 }
